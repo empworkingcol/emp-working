@@ -21,7 +21,7 @@ export default {
     },
     extend: {
       colors: {
-        primary: '#eb4e20',
+        primary: '#921507',
         secondary: colors.zinc,
         truegray: colors.neutral,
         warmgray: colors.stone,
@@ -72,6 +72,7 @@ export default {
         xxs: '.65rem',
         xs: '.75rem',
         tiny: '.875rem',
+        m: '1.25rem',
         '3xl': ['2rem', '2.25rem'],
         '6xl': '4rem',
         '7xl': '5rem',

@@ -37,10 +37,10 @@ export default {
           700: '#BC3E1A',
         },
         forest: {
-          200: '#D7E1DD',
-          DEFAULT: '#386957', // forest green crayola
-          600: '#1F4C3C',
-          700: '#133E2E',
+          200: '#38A856',
+          DEFAULT: '#1A8D38', // forest green crayola
+          600: '#177630',
+          700: '#14692B',
         },
         queen: {
           200: '#DFE7EB',
@@ -73,6 +73,7 @@ export default {
         xs: '.75rem',
         tiny: '.875rem',
         m: '1.25rem',
+        normal: '1.05rem',
         '3xl': ['2rem', '2.25rem'],
         '6xl': '4rem',
         '7xl': '5rem',

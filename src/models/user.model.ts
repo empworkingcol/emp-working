@@ -70,9 +70,12 @@ export interface UserCreateModel {
   type: string;
 }
 
-export interface UserAuthModel {
+export interface LoginModel {
   email: string;
-  user_name: string;
+  password: string;
+}
+
+export interface UserAuthModel extends LoginModel {
   rol: {
     rol_name: string;
   }

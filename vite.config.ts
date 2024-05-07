@@ -36,11 +36,6 @@ export default ({mode}) => {
       alias: resolvedAliases,
     },
     root: path.resolve(__dirname, './'),
-    build: {
-      outDir: './public',
-    },
-    envDir: './src/envs',
-    envPrefix: 'REACT_APP_',
     server: {
       port: 3000,
     },

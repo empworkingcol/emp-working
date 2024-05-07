@@ -10,6 +10,12 @@ type Answer = {
   }
 }
 
+export interface AnswerForumModel {
+  response_text: string;
+  user_id: string;
+  question_id: string;
+}
+
 export interface ForumCreateModel extends GeneralForumModel {
   user_id: string;
   question_text: string;

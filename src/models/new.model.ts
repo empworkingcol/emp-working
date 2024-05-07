@@ -18,6 +18,7 @@ export interface NewCreateModel extends GeneralNewModel {
 
 export interface NewGetModel extends GeneralNewModel {
   new_id: string;
+  img_url: string;
   NewComment: Comment[],
   user: {
     user_name: string;

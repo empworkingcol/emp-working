@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { NewCreateModel, NewGetModel } from '../models/new.model'
+import { NewCommentModel, NewCreateModel, NewGetModel } from '../models/new.model'
 
 const apiUrl= `${import.meta.env.VITE_BASE_URL}/news`
 
@@ -28,6 +28,15 @@ const NewService = {
   createNew: async (newCreate: NewCreateModel) => {
     try {
       const response = await axios.post(`${apiUrl}/`, newCreate );
+      return response
+    } catch (error) {
+      throw new Error('Error')
+    }
+  },
+
+  addComment: async (newCreate: NewCommentModel) => {
+    try {
+      const response = await axios.post(`${apiUrl}/comments`, newCreate );
       return response
     } catch (error) {
       throw new Error('Error')

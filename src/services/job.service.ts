@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { JobCreateModel, JobGetModel, JobListModel } from '../models/job.model'
+import { JobCreateModel, JobGetModel } from '../models/job.model'
 
 const apiUrl= `${import.meta.env.VITE_BASE_URL}/jobs`
 
 const JobService = {
-  getJobs: async (): Promise<JobListModel[]> => {
+  getJobs: async (): Promise<JobGetModel[]> => {
     try {
       const response = await axios.get(`${apiUrl}/`)
       if (response.status >= 200 && response.status < 300 ) {

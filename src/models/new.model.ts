@@ -25,3 +25,9 @@ export interface NewGetModel extends GeneralNewModel {
   },
   creation_date: string;
 }
+
+export interface NewCommentModel {
+  comment_text: string;
+  new_id: string;
+  user_id: string;
+}

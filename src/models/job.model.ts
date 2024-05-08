@@ -8,7 +8,7 @@ export interface JobCreateModel extends GeneralJobModel {
   user_id: string;
 }
 
-export interface JobListModel extends GeneralJobModel {
+export interface JobGetModel extends GeneralJobModel {
   job_offer_id: string;
   user: {
     user_name: string;
@@ -20,8 +20,5 @@ export interface JobListModel extends GeneralJobModel {
     }
   },
   creation_date: string;
-}
-
-export interface JobGetModel extends JobListModel {
   offer_text: string;
 }

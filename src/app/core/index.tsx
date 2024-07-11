@@ -1,15 +1,18 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import Router from '../Router';
-import LoggedOutLayout from '../layouts/LoggedOutLayout';
+import Footer from "@components/atoms/Footer";
+import { AuthProvider } from './AuthContext';
 
 const Core = () => {
 
   return (
-    <BrowserRouter>
-      <LoggedOutLayout />
-      <Router />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Router />
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>  
   );
 };
 

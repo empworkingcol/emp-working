@@ -2,7 +2,6 @@ import React, { useState, Fragment } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Dialog, Transition, TransitionChild } from '@headlessui/react';
-
 import PopUp from 'src/components/atoms/PopUp';
 import NewService from 'src/services/new.service';
 import { NewCreateModel } from 'src/models/new.model';
@@ -107,80 +106,80 @@ const ModalAddNew: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="absolute inset-0 z-1 overflow-y-auto" onClose={onClose}>
-          <div className="min-h-screen px-4 text-center">
+        <Dialog as='div' className='fixed inset-0 z-10 overflow-y-auto' onClose={onClose}>
+          <div className='flex items-start justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0'>
             <TransitionChild
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+              enter='ease-out duration-300'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+              leave='ease-in duration-200'
+              leaveFrom='opacity-100'
+              leaveTo='opacity-0'
             >
-              <div className="fixed inset-0 bg-black bg-opacity-30" />
+              <div className='fixed inset-0 transition-opacity'>
+                <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+              </div>
             </TransitionChild>
 
-            <span className="inline-block h-screen align-middle" aria-hidden="true">
-              &#8203;
-            </span>
+            <span className='hidden sm:inline-block sm:align-middle sm:h-screen'>&#8203;</span>
             <TransitionChild
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              enter='ease-out duration-300'
+              enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+              enterTo='opacity-100 translate-y-0 sm:scale-100'
+              leave='ease-in duration-200'
+              leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+              leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <div className='inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6'>
+                <h3 className='text-lg font-medium leading-6 text-gray-900'>
                   Crear Noticia
                 </h3>
-                <form onSubmit={handleSubmit} className="mt-2">
-                  {error && <p className="text-red-500 mb-4">{error}</p>}
-                  <label className="block mb-2">
+                <form onSubmit={handleSubmit} className='mt-2'>
+                  {error && <p className='text-red-500 mb-4'>{error}</p>}
+                  <label className='block mb-2'>
                     Título:
                     <input
-                      type="text"
+                      type='text'
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       maxLength={50}
-                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                      className='w-full p-2 border border-gray-300 rounded mt-1'
                     />
                   </label>
-                  <label className="block mb-2">
+                  <label className='block mb-2'>
                     Texto:
                     <ReactQuill
                       value={text}
                       onChange={setText}
-                      className="mt-1"
-                      theme="snow"
+                      className='mt-1'
+                      theme='snow'
                       modules={modules}
                       formats={formats}
                     />
                   </label>
-                  <label className="block mb-4">
+                  <label className='block mb-4'>
                     Imagen:
                     <input
-                      type="file"
-                      accept=".jpeg,.jpg,.png,.iphone"
+                      type='file'
+                      accept='.jpeg,.jpg,.png,.iphone'
                       onChange={(e) => setImage(e.target.files?.[0] || null)}
-                      className="ml-2 mt-1"
+                      className='ml-2 mt-1'
                     />
                   </label>
 
-                  <div className="mt-4 flex justify-end">
+                  <div className='mt-4 flex justify-end'>
                     <button
-                      type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
+                      type='button'
+                      className='inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500'
                       onClick={onClose}
                     >
                       Cancelar
                     </button>
                     <button
-                      type="submit"
-                      className="inline-flex justify-center px-4 py-2 ml-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      type='submit'
+                      className='inline-flex justify-center px-4 py-2 ml-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500'
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Creando...' : 'Aceptar'}

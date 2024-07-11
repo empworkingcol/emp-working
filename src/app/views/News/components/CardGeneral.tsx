@@ -1,10 +1,13 @@
-import { formatDate } from "src/utils/formartters.utils"
-import Comments from "./Comments";
-import Input from "src/components/atoms/Input";
-import Button from "src/components/atoms/Button";
-import NewService from "src/services/new.service";
-import { useEffect, useState } from "react";
-import { NewCommentModel } from "src/models/new.model";
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { formatDate } from 'src/utils/formartters.utils'
+import Comments from './Comments';
+import Input from 'src/components/atoms/Input';
+import Button from 'src/components/atoms/Button';
+import NewService from 'src/services/new.service';
+import { NewCommentModel } from 'src/models/new.model';
+import { useAuth } from 'src/app/core/useAuth';
 
 type PropComment = {
   comment_text: string;
@@ -31,24 +34,30 @@ const CardGeneral = (props: PropsCardGeneral) => {
 
   const [ commentControl, setComment ] = useState('');
   const [ error, setError ] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
   
   const newComment: NewCommentModel = {
     comment_text: commentControl,
-    user_id: '',
+    user_id: user?.user_id ? user.user_id : '',
     new_id: new_id,
   };
 
   useEffect(() => {}, [error])
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
   }
 
-  const handleComment = (e) => {
+  const handleComment = (e: FormEvent) => {
     e.preventDefault();
     if (commentControl?.length !== 0) {
       setError(false);
-      NewService.addComment(newComment)
+      if (newComment?.user_id) {
+        NewService.addComment(newComment);
+      } else {
+        navigate('/login');
+      }
     } else {
       setError(true);
     }
@@ -71,7 +80,7 @@ const CardGeneral = (props: PropsCardGeneral) => {
       {
         comments.map((comment) => (
           <Comments
-            key={`#`+`${comment.creation_date}`}
+            key={`${comment.creation_date}`}
             user={comment.user}
             comment_text={comment.comment_text}
             creation_date={comment.creation_date}

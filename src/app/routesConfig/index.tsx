@@ -1,6 +1,6 @@
-import { RouteProps } from 'react-router-dom'
+import { RouteProps } from 'react-router-dom';
 
-import { DEFAULT_PATH } from './routesConst'
+import { DEFAULT_PATH } from './routesConst';
 import Home from '../views/Home';
 import Jobs from '../views/Jobs';
 import News from '../views/News';
@@ -8,6 +8,10 @@ import Courses from '../views/Courses';
 import Foro from '../views/Foro';
 import Dashboard from '../views/Dashboard';
 import Profile from '../views/Profile';
+import Login from '../views/Login';
+import Register from '../views/Register';
+import ProtectedRoute from '../layouts/ProtectedLogged';
+import ProtectedLogout from '../layouts/ProtectedLogout';
 
 export type TRoute = RouteProps & {
   exact?: boolean;
@@ -18,12 +22,29 @@ export const privateRoutes: TRoute[] = [
   {
     exact: true,
     path: '/dashboard',
-    element: <Dashboard />,
+    element: (
+      <ProtectedLogout>
+        <Dashboard />
+      </ProtectedLogout>
+    ),
+  },
+  {
+    exact: true,
+    path: '/mycourses',
+    element: (
+      <ProtectedLogout>
+        <Dashboard />
+      </ProtectedLogout>
+    ),
   },
   {
     exact: true,
     path: '/profile',
-    element: <Profile />,
+    element: (
+      <ProtectedLogout>
+        <Profile />
+      </ProtectedLogout>
+    ),
   },
 ];
 
@@ -52,5 +73,23 @@ export const publicRoutes: TRoute[] = [
     exact: true,
     path: '/help',
     element: <Foro />,
+  },
+  {
+    exact: true,
+    path: '/login',
+    element: (
+      <ProtectedRoute>
+        <Login />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    exact: true,
+    path: '/register',
+    element: (
+      <ProtectedRoute>
+        <Register />
+      </ProtectedRoute>
+    ),
   },
 ];

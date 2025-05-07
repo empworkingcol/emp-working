@@ -3,6 +3,14 @@ import { JobCreateModel, JobGetModel } from '../models/job.model'
 
 const apiUrl= `${import.meta.env.VITE_BASE_URL}/jobs`
 
+const config = (token: string) => {
+  return {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  };
+};
+
 const JobService = {
   getJobs: async (): Promise<JobGetModel[]> => {
     try {
@@ -25,9 +33,12 @@ const JobService = {
     }
   },
 
-  createJob: async (job: JobCreateModel) => {
+  createJob: async (job: JobCreateModel, token: string | undefined) => {
     try {
-      const response = await axios.post(`${apiUrl}/`, job)
+      let response;
+      if (token) {
+        response = await axios.post(`${apiUrl}/`, job, config(token) );
+      }
       return response
     } catch (error) {
       throw new Error('Error')

@@ -28,7 +28,7 @@ const JobCard = (props: PropsJobCard) => {
   
   return (
     <article onClick={() => handleJob(job_offer_id)} 
-      className='p-4 grid gap-3 w-full  bg-white border border-gray-200'>
+      className='cursor-pointer p-4 grid gap-3 w-full  bg-white border border-gray-200'>
       <h4 className='text-m font-bold tracking-tight text-gray-900 dark:text-white'>{offer_title}</h4>
       <div className='flex'>
         <img className='w-8 h-8 rounded-full' src={`${icon_url}`} alt='icon_user' />

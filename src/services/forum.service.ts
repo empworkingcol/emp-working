@@ -10,7 +10,7 @@ const apiUrl= `${import.meta.env.VITE_BASE_URL}/forum`
 const ForumQuestionService = {
   getForumQuestions: async (): Promise<ForumListModel[]> => {
     try {
-      const response = await axios.get(`${apiUrl}/`)
+      const response = await axios.get(`${apiUrl}/questions`)
       if (response.status >= 200 && response.status < 300 ) {
         return response.data.data
       }
@@ -20,9 +20,9 @@ const ForumQuestionService = {
     }
   },
 
-  getForumQuestion: async (id: number): Promise<ForumGetModel> => {
+  getForumQuestion: async (id: string): Promise<ForumGetModel> => {
     try {
-      const response = await axios.get(`${apiUrl}/${id}`)
+      const response = await axios.get(`${apiUrl}/questions/${id}`)
       return response.data
     } catch (error) {
       throw new Error('Error')

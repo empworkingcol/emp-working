@@ -5,7 +5,7 @@ interface GeneralJobModel {
 export interface JobCreateModel extends GeneralJobModel {
   offer_text: string;
   city_id: string;
-  user_id: string;
+  user_id: string | undefined;
 }
 
 export interface JobGetModel extends GeneralJobModel {

@@ -13,6 +13,7 @@ type TInput = {
   label?: string;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeHolder?: string;
   questionMark?: string;
   trailingIcon?: React.ElementType;
   trailingIconColor?: string;
@@ -35,6 +36,7 @@ const Input = React.forwardRef<HTMLInputElement, TInput>(
       label,
       name,
       onChange,
+      placeHolder,
       trailingIcon: TrailingIcon,
       trailingIconColor,
       trailingText,
@@ -50,7 +52,7 @@ const Input = React.forwardRef<HTMLInputElement, TInput>(
         {label && (
           <label
             htmlFor={name}
-            className={`absolute left-2 top-label z-10 flex items-center bg-white px-1 text-sm font-normal ${
+            className={`absolute left-2 top-label z-1 flex items-center bg-white px-1 text-sm font-normal ${
               error ? 'text-vermillion' : 'text-gray-400'
             }`}
           >
@@ -67,6 +69,7 @@ const Input = React.forwardRef<HTMLInputElement, TInput>(
             ref={ref}
             type={type}
             value={value}
+            placeholder={placeHolder}
             className={classNames(
               className,
               'block h-10 w-full border-6 rounded-md text-base font-normal focus:outline-none',

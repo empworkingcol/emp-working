@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import Button from '../../../components/atoms/Button'
+import Button from '../../../components/atoms/Button';
 
 const Home = () => {
   
@@ -58,8 +58,7 @@ const Home = () => {
         }> Ver ofertas </Button>
       </section>
     </>
-    
-  );
+    );
 };
 
 export default Home;

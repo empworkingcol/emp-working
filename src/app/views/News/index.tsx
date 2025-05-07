@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import NewService from 'src/services/new.service';
 import { NewGetModel } from 'src/models/new.model';
@@ -9,16 +9,17 @@ import Button from 'src/components/atoms/Button';
 import { useAuth } from 'src/app/core/useAuth';
 
 const News = () => {
-
-  const[newsList, setNewsList] = useState<NewGetModel[]>();
+  const [newsList, setNewsList] = useState<NewGetModel[]>();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, saveLastAction } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOpenModal = () => {
     if (user?.user_id) {
       setIsModalOpen(true);
     } else {
+      saveLastAction(location.pathname, { isModalOpen: true });
       navigate('/login');
     }
   };
@@ -27,12 +28,18 @@ const News = () => {
     setIsModalOpen(false);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     NewService.getNews()
       .then((data) => {
-        setNewsList(data)
-      })
-  }, [])
+        setNewsList(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (location.state?.modalState?.isModalOpen) {  // Línea 25: Cambio, verificar estado del modal
+      setIsModalOpen(location.state.modalState.isModalOpen);
+    }
+  }, [location.state]);
 
   return (
     <section className='flex flex-col items-center m-4 sm:m-6 md:m-8 lg:m-10 xl:mx-16'>

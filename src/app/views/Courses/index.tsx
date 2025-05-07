@@ -27,7 +27,7 @@ const Courses = () => {
             course_name = {courses.course_name}
             course_date = {courses.course_date}
             course_description = {courses.course_description}
-            CategoryCourse = {courses.CategoryCourse}
+            category_course = {courses.category_course}
           />
         ))
       }

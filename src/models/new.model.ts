@@ -12,14 +12,14 @@ type Comment = {
 }
 
 export interface NewCreateModel extends GeneralNewModel {
-  file: File;
-  user_id: string;
+  file: File | null;
+  user_id: string | undefined;
 }
 
 export interface NewGetModel extends GeneralNewModel {
   new_id: string;
   img_url: string;
-  NewComment: Comment[],
+  new_comment: Comment[],
   user: {
     user_name: string;
   },

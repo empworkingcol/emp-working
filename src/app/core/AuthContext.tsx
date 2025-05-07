@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode } from 'react';
+import Cookies from 'js-cookie';
+
 import { decodeToken, getToken, setToken } from './Auth.service';
-import { Navigate } from 'react-router-dom';
 
 type User = {
   email: string;
@@ -12,11 +13,18 @@ type User = {
   };
 };
 
+type LastAction = {
+  path: string;
+  modalState?: { isModalOpen: boolean };
+};
+
 type AuthContextType = {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   login: (token: string) => void;
   logout: () => void;
+  saveLastAction: (path: string, modalState?: { isModalOpen: boolean }) => void;
+  lastAction: LastAction | null;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -27,6 +35,20 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [lastAction, setLastAction] = useState<LastAction | null>(null);
+
+  if (!user) {
+    const token = getToken();
+    if (token) {
+      const decodedUser = decodeToken(token);
+      if (decodedUser) {
+        setUser({
+          token: token,
+          ...decodedUser.user
+        });
+      }
+    }
+  }
 
   const login = (newToken: string) => {
     setToken(newToken);
@@ -34,8 +56,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (decodedUser) {
       setUser({
         token: newToken,
-        ...decodedUser.user});
-      return <Navigate replace to="/" />;
+        ...decodedUser.user
+      });
+      setLastAction(null);
     } else {
       console.error('Invalid token');
     }
@@ -43,23 +66,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logout = () => {
     setUser(null);
-    document.cookie = 'authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    Cookies.remove('session_tkn');
   };
 
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      const decodedUser = decodeToken(token);
-      if (decodedUser) {
-        setUser({
-          token: token,
-          ...decodedUser.user});
-      }
-    }
-  }, []);
+  const saveLastAction = (path: string, modalState?: { isModalOpen: boolean }) => {
+    setLastAction({ path, modalState });
+  };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout, saveLastAction, lastAction }}>
       {children}
     </AuthContext.Provider>
   );

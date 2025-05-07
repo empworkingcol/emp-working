@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import PasswordInput from "src/components/atoms/PasswordInput";
 import Input from "src/components/atoms/Input";
 import Button from "../../../components/atoms/Button";
-import { emailPattern, passwordPattern } from "src/utils/patterns.utils";
+import { emailPattern } from "src/utils/patterns.utils";
 import UserService from "src/services/user.service";
 import { LoginModel } from "src/models/user.model";
 import { useAuth } from 'src/app/core/useAuth';
-
 
 type RuleLogin = {
   rule: RegExp;
@@ -27,9 +26,8 @@ type UserLogin = {
 }; 
 
 const Login = () => {
-
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, lastAction } = useAuth();
 
   const userInformation: UserLogin = {
     email: {
@@ -44,8 +42,8 @@ const Login = () => {
       value: '',
       error: false,
       validation: {
-        rule: passwordPattern,
-        helpMessage: 'Escribe una clave válida'
+        rule: /^.{6,}$/,
+        helpMessage: 'La clave debe tener al menos 6 digitos'
       }
     }
   };
@@ -78,19 +76,26 @@ const Login = () => {
         email: userInfo.email.value,
         password: userInfo.password.value
       }
-      UserService.authUser(user)
-        .then(
-          (data) => {
-            if (data?.data?.access_token) {
-              login(data.data.access_token);
-            }
+      try {
+        const data = await UserService.authUser(user);
+        if (data?.data?.access_token) {
+          login(data.data.access_token);
+          if (lastAction) {
+            navigate(lastAction.path, { state: { modalState: lastAction.modalState } });
+          } else {
+            navigate('/');
           }
-        )  
+        } else {
+          console.error('Invalid login response');
+        }
+      } catch (error) {
+        console.error('Login failed', error);
+      }
     } 
   };
 
   const validation = (value: string, parameter: RuleLogin) => {
-    return value === undefined || !parameter.rule?.test(value)
+    return value === undefined || !parameter.rule?.test(value);
   }
 
   const isUserLoginKey = (key: string): key is keyof UserLogin => {
@@ -133,7 +138,7 @@ const Login = () => {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h3 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Iniciar sesion
+              Iniciar sesión
             </h3>
             <form onSubmit={handleLogin} className="space-y-4 md:space-y-6">
               <Input
@@ -159,9 +164,8 @@ const Login = () => {
               <Button
                 type='submit'
                 variant='default'
-                onClick={handleLogin}
               >
-                Iniciar sesion
+                Iniciar sesión
               </Button>
             </form>
             <div className='flex items-center gap-2'>
@@ -169,11 +173,11 @@ const Login = () => {
                 No tienes una cuenta
               </p>
               <Button
-                type='submit'
+                type='button'
                 variant='link'
                 onClick={() => navigate("/register")}
               >
-                Registrate aqui
+                Regístrate aquí
               </Button>
             </div> 
           </div>       

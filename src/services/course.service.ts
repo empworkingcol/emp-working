@@ -1,7 +1,17 @@
-import axios from 'axios'
-import { CourseCreateModel, CourseGetModel, CourseListModel } from '../models/course.model'
+import axios from 'axios';
+
+import { CourseCreateModel, CourseGetModel, CourseListModel } from '../models/course.model';
 
 const apiUrl= `${import.meta.env.VITE_BASE_URL}/courses`
+
+const config = (token: string) => {
+  return {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  };
+};
 
 const CourseService = {
   getCourses: async (): Promise<CourseListModel[]> => {
@@ -25,9 +35,9 @@ const CourseService = {
     }
   },
 
-  createCourse: async (course: CourseCreateModel) => {
+  createCourse: async (course: CourseCreateModel, token: string) => {
     try {
-      const response = await axios.post(`${apiUrl}/`, course)
+      const response = await axios.post(`${apiUrl}/`, course, config(token))
       return response
     } catch (error) {
       throw new Error('Error')

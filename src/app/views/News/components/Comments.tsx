@@ -1,4 +1,4 @@
-import { formatDate } from "src/utils/formartters.utils";
+import { formatDate } from 'src/utils/formartters.utils';
 
 type PropsComment = {
   comment_text: string;

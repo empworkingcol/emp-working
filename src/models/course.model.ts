@@ -29,16 +29,16 @@ export interface CourseCreateModel extends GeneralCourseModel {
 }
 
 export interface CourseGetModel extends GeneralCourseModel {
-  CategoryCourse: {
+  category_course: {
     category_name: string;
   }
-  Video: Video[];
-  Test: Test[];
+  video: Video[];
+  test: Test[];
 }
 
 export interface CourseListModel extends GeneralCourseModel {
   course_id: string;
-  CategoryCourse: {
+  category_course: {
     category_name: string;
   }
 }

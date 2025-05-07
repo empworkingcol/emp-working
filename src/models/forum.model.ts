@@ -25,6 +25,9 @@ export interface ForumGetModel extends GeneralForumModel {
   question_text: string;
   ForumResponse: Answer[];
   creation_date: string;
+  user: {
+    user_name: string;
+  }
 }
 
 export interface ForumListModel extends GeneralForumModel {

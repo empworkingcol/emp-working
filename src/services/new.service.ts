@@ -3,6 +3,15 @@ import { NewCommentModel, NewCreateModel, NewGetModel } from '../models/new.mode
 
 const apiUrl= `${import.meta.env.VITE_BASE_URL}/news`
 
+const config = (token: string) => {
+  return {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
+    }
+  };
+};
+
 const NewService = {
   getNews: async (): Promise<NewGetModel[]> => {
     try {
@@ -25,9 +34,12 @@ const NewService = {
     }
   },
 
-  createNew: async (newCreate: NewCreateModel) => {
+  createNew: async (newCreate: NewCreateModel, token: string | undefined) => {
     try {
-      const response = await axios.post(`${apiUrl}/`, newCreate );
+      let response;
+      if (token) {
+        response = await axios.post(`${apiUrl}/`, newCreate, config(token) );
+      }
       return response
     } catch (error) {
       throw new Error('Error')

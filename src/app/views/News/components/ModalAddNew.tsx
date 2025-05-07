@@ -1,7 +1,8 @@
 import React, { useState, Fragment } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { Dialog, Transition, TransitionChild } from '@headlessui/react';
+import ReactQuill from 'react-quill';
+
+import 'react-quill/dist/quill.snow.css';
 import PopUp from 'src/components/atoms/PopUp';
 import NewService from 'src/services/new.service';
 import { NewCreateModel } from 'src/models/new.model';

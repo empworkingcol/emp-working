@@ -1,13 +1,14 @@
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
+
 import { TokenPayLoad } from './types';
 
 export const setToken = (token: string) => {
-  Cookies.set('token', token, { expires: 30, secure: true, sameSite: 'strict' });
+  Cookies.set('session_tkn', token, { expires: 30, secure: true, sameSite: 'strict' });
 };
 
 export const getToken = () => {
-  return Cookies.get('token');
+  return Cookies.get('session_tkn');
 };
 
 export const decodeToken = (token: string): TokenPayLoad | null => {
@@ -15,7 +16,6 @@ export const decodeToken = (token: string): TokenPayLoad | null => {
     const decode = jwt.decode(token) as TokenPayLoad;
     return decode;
   } catch (error) {
-    console.error('Token inválido:', error);
-    return null;
+    throw new Error('Failed fetch to extract token');
   }
 };

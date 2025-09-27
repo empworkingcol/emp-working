@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["babel__generator"],
     "composite": true,
     "skipLibCheck": true,
     "module": "ESNext",

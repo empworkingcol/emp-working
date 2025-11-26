@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import UnderConstructionBanner from '../../../components/atoms/UnderConstruction';
+/* import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import NewService from 'src/services/new.service';
@@ -6,8 +7,8 @@ import { NewGetModel } from 'src/models/new.model';
 import CardGeneral from './components/CardGeneral';
 import ModalAddNew from './components/ModalAddNew';
 import Button from 'src/components/atoms/Button';
-import { useAuth } from 'src/app/core/useAuth';
-
+import { useAuth } from 'src/app/core/useAuth'; */
+/* 
 const News = () => {
   const [newsList, setNewsList] = useState<NewGetModel[]>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,5 +72,9 @@ const News = () => {
     </section>
   );
 };
+ */
+const News = () => (
+  <UnderConstructionBanner />
+);
 
 export default News;

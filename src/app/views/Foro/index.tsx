@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import UnderConstructionBanner from '../../../components/atoms/UnderConstruction';
+
+/* import { useEffect, useState } from "react";
 
 import { ForumGetModel, ForumListModel } from "src/models/forum.model";
 import ForumQuestionCard from "./components/ForumCard";
@@ -56,6 +58,10 @@ const Foro = () => {
       }
     </section>
   );
-};
+}; */
+
+const Foro = () => (
+  <UnderConstructionBanner />
+);
 
 export default Foro;

@@ -1,5 +1,4 @@
-import React from 'react';
-
+/* 
 const Pagination = ({ currentPage, maxPage, onPageChange }) => {
   const handlePrevClick = () => {
     if (currentPage > 1) {
@@ -35,3 +34,4 @@ const Pagination = ({ currentPage, maxPage, onPageChange }) => {
 };
 
 export default Pagination;
+ */

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import UnderConstructionBanner from '../../../components/atoms/UnderConstruction';
+
+/* import { useEffect, useState } from "react";
 
 import { JobGetModel } from "src/models/job.model";
 import JobCard from "./components/JobCard";
@@ -83,5 +85,8 @@ const Jobs = () => {
     </section>
   );
 };
-
+ */
+const Jobs = () => (
+  <UnderConstructionBanner />
+);
 export default Jobs;

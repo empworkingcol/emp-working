@@ -1,4 +1,4 @@
-
+/* 
 type PropsVideoStep = {
   video_id: string
 }
@@ -20,3 +20,4 @@ const VideoStep = (props: PropsVideoStep) => {
 };
 
 export default VideoStep;
+ */

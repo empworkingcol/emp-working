@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, ChangeEvent, FormEvent } from 'react';
+/* import React, { useState, useEffect, Fragment, ChangeEvent, FormEvent } from 'react';
 import { DefaultEditor } from 'react-simple-wysiwyg';
 import { Dialog, Transition, TransitionChild } from '@headlessui/react';
 import PopUp from 'src/components/atoms/PopUp';
@@ -177,7 +177,6 @@ const ModalAddJob: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <h3 className="text-lg font-medium leading-6 text-gray-900">Crear Oferta</h3>
 
                 <form onSubmit={handleSubmit} className="mt-2">
-                  {/* País */}
                   <div className="my-4">
                     <label htmlFor="country">País:</label>
                     <input
@@ -205,8 +204,6 @@ const ModalAddJob: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                       <p className="text-red-500 text-sm">{formState.country.helpMessage}</p>
                     )}
                   </div>
-
-                  {/* Ciudad */}
                   <div className="my-4">
                     <label htmlFor="city">Ciudad:</label>
                     <input
@@ -245,7 +242,6 @@ const ModalAddJob: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     onChange={handleChange}
                   />
 
-                  {/* 🔹 Editor reemplazado */}
                   <label className="block mb-2">
                     Texto:
                     <DefaultEditor
@@ -286,3 +282,4 @@ const ModalAddJob: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 };
 
 export default ModalAddJob;
+ */

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import UnderConstructionBanner from '../../../components/atoms/UnderConstruction';
+
+/* import { useEffect, useState } from "react";
 
 import { CourseListModel } from "src/models/course.model";
 import CourseCard from "./components/CourseCard";
@@ -34,5 +36,9 @@ const Courses = () => {
     </section>
   );
 };
+*/
+const Courses = () => (
+  <UnderConstructionBanner />
+);
 
 export default Courses;

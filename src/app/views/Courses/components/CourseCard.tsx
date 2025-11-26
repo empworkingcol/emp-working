@@ -1,4 +1,4 @@
-import Button from "src/components/atoms/Button";
+/* import Button from "src/components/atoms/Button";
 import { formatDate } from "src/utils/formartters.utils";
 
 type PropsCourseCard = {
@@ -50,3 +50,4 @@ const CourseCard = (props: PropsCourseCard) => {
 };
 
 export default CourseCard;
+ */

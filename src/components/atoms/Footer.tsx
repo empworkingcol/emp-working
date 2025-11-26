@@ -6,7 +6,7 @@ const Footer = () => (
     <div>
       <p className='text-white'> Mantente en contacto con nosotros a través de nuestras redes sociales </p>
       <div className='my-2 flex gap-4'>
-        <a href='https://www.youtube.com/@freewayemp' target='_blank' rel='noopener noreferrer'>
+        <a href='https://www.youtube.com/@empworking/' target='_blank' rel='noopener noreferrer'>
           <FaYoutubeSquare className='text-white text-2xl' />
         </a>
         <a href='https://www.facebook.com/profile.php?id=100064752544323' target='_blank' rel='noopener noreferrer'>

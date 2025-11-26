@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+/* import React, { useState, Fragment } from 'react';
 import { Dialog, Transition, TransitionChild } from '@headlessui/react';
 import { DefaultEditor } from 'react-simple-wysiwyg';
 import PopUp from 'src/components/atoms/PopUp';
@@ -132,3 +132,4 @@ const ModalAddNew: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 };
 
 export default ModalAddNew;
+ */

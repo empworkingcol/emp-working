@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import UnderConstructionBanner from '../../../components/atoms/UnderConstruction';
+
+/* import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import Button from '../../../components/atoms/Button';
 import Input from '../../../components/atoms/Input';
 import PasswordInput from '../../../components/atoms/PasswordInput';
 import { Skills, Levels, UserRegister } from '../../../models/user.model';
-import { alphabeticPattern, emailPattern } from '../../../utils/patterns.utils';
+import { alphabeticPattern, emailPattern } from '../../../utils/patterns.utils'; */
 
-const Register = () => {
+/* const Register = () => {
   const initialState = {
     email: { value: '', error: false, helpMessage: 'Escribe tu correo', rule: emailPattern },
     password: { value: '', error: false, helpMessage: 'Escribe una clave' },
@@ -368,6 +370,10 @@ const Register = () => {
       </div>
     </section>
   );
-};
+}; */
+
+const Register = () => (
+  <UnderConstructionBanner />
+)
 
 export default Register;

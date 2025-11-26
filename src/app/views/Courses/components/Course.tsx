@@ -1,4 +1,4 @@
-import Button from "src/components/atoms/Button";
+/* import Button from "src/components/atoms/Button";
 import VideoStep from "./VideoStep";
 
 const Course = () => {
@@ -40,4 +40,4 @@ const Course = () => {
   );
 };
 
-export default Course;
+export default Course; */
